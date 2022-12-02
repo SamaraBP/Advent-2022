@@ -36,7 +36,7 @@ for (var i of gameArray) {
     player1Score += 1;
   } else if (player1Choice === "B") {
     player1Score += 2;
-  } else if (player1Choice === "B") {
+  } else if (player1Choice === "C") {
     player1Score += 3;
   }
 
@@ -44,7 +44,7 @@ for (var i of gameArray) {
     player2Score += 1;
   } else if (player2Choice === "Y") {
     player2Score += 2;
-  } else if (player2Choice === "C") {
+  } else if (player2Choice === "Z") {
     player2Score += 3;
   }
 
@@ -89,10 +89,11 @@ for (var i of gameArray) {
   }
 
 
-  break;
+  // break;
 }
 
-//Add up winners score
+// console.log(player1Score);
+console.log(player2Score);
 
 
 
