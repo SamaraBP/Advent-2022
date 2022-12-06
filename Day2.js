@@ -15,7 +15,7 @@ fs.readFile('Day2Input.txt', 'utf8', (err, data) => {
 
 
 //break into array
-var gameArray = data.split("\\r?\\n");   // need to change player2Choice to outcome and place right letter in player2choice.
+var gameArray = data.split("\n");   
 var outcome = "";
 var player1Choice = "";
 var player2Choice = "";
@@ -23,6 +23,8 @@ var player1Score = 0;
 var player2Score = 0;
 
 console.log(gameArray);
+
+
 
 //determin who wins
 // compare by making into array of "A Y" then compare string[0] with string[2]!!
@@ -34,7 +36,13 @@ for (var i of gameArray) {
 
   // Set outcomes
  if (outcome === "Y") { //Draw
-    player2Choice = player1Choice;
+  if (player1Choice === "A") {
+    player2Choice = "X";
+  } else if (player1Choice === "B") {
+    player2Choice = "Y";
+  } else if (player1Choice === "C") {
+    player2Choice = "Z";
+  }
  }
 
   else if (outcome === "X") { //Loose
@@ -42,7 +50,7 @@ for (var i of gameArray) {
       player2Choice = "Z";
     } else if (player1Choice === "B") {
       player2Choice = "X";
-    } else {
+    } else if (player1Choice === "C") {
       player2Choice = "Y";
     }
   } 
@@ -52,11 +60,13 @@ for (var i of gameArray) {
       player2Choice = "Y";
     } else if (player1Choice === "B") {
       player2Choice = "Z";
-    } else {
+    } else if (player1Choice === "C") {
       player2Choice = "X";
     }
   }
 
+  console.log(player1Choice);
+  console.log(player2Choice);
 
   // Add points for Choices
   if (player1Choice === "A") {
@@ -115,19 +125,11 @@ for (var i of gameArray) {
     // console.log("if error Loose condition.");
   }
 
-
-  // break;
+  // console.log(player1Score);
+  console.log(player2Score);
+  
+ 
 }
-
-// console.log(player1Score);
-console.log(player2Score);
-
-
-
-
-
-
-
 
 
 });
