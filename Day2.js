@@ -15,7 +15,8 @@ fs.readFile('Day2Input.txt', 'utf8', (err, data) => {
 
 
 //break into array
-var gameArray = data.split("\n");
+var gameArray = data.split("\\r?\\n");   // need to change player2Choice to outcome and place right letter in player2choice.
+var outcome = "";
 var player1Choice = "";
 var player2Choice = "";
 var player1Score = 0;
@@ -29,7 +30,33 @@ for (var i of gameArray) {
   console.log(i);
 
   player1Choice = i[0];
-  player2Choice = i[2];
+  outcome = i[2];
+
+  // Set outcomes
+ if (outcome === "Y") { //Draw
+    player2Choice = player1Choice;
+ }
+
+  else if (outcome === "X") { //Loose
+    if (player1Choice === "A") {
+      player2Choice = "Z";
+    } else if (player1Choice === "B") {
+      player2Choice = "X";
+    } else {
+      player2Choice = "Y";
+    }
+  } 
+
+  else if (outcome === "Z") { //Win
+    if (player1Choice === "A") {
+      player2Choice = "Y";
+    } else if (player1Choice === "B") {
+      player2Choice = "Z";
+    } else {
+      player2Choice = "X";
+    }
+  }
+
 
   // Add points for Choices
   if (player1Choice === "A") {
@@ -40,7 +67,7 @@ for (var i of gameArray) {
     player1Score += 3;
   }
 
-  if (player2Choice === "X") {
+  if (player2Choice === "X") { 
     player2Score += 1;
   } else if (player2Choice === "Y") {
     player2Score += 2;
@@ -57,7 +84,7 @@ for (var i of gameArray) {
   } else if (player1Choice === "A" && player2Choice === "Z") {
     player1Score += 6;
   } else {
-    console.log("if error win condition.");
+    // console.log("if error win condition.");
   }
 
 //tie Conditions
@@ -74,7 +101,7 @@ for (var i of gameArray) {
     player2Score += 3;
 
   } else {
-    console.log("if error draw condition.");
+    // console.log("if error draw condition.");
   }
 
 //Loose Conditions
@@ -85,7 +112,7 @@ for (var i of gameArray) {
   } else if (player1Choice === "B" && player2Choice === "Z") {
     player2Score += 6;
   } else {
-    console.log("if error Loose condition.");
+    // console.log("if error Loose condition.");
   }
 
 
