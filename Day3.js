@@ -59,35 +59,45 @@ fs.readFile("Day3Input.txt", "utf8", (err, data) => {
         console.log(err);
         return;
     }
+
 //enter code here.
 //Split into a array.
 var theArray = data.split("\n");
-var sideA = "";
-var sideAConverted = [];
-var sideB = "";
 var match = [];
 var total = 0;
+var arrayCounter = 0;
+var counter = 0;
+var bag1 = "";
+var bag2 = "";
+var bag3 = "";
 
 
 
-for(var i of theArray) {
-//Split each string in array in half using .length then compare both sides for the matching char.
+while (arrayCounter < theArray.length/3) {
+    arrayCounter += 1;
 
-    sideA = i.slice(0, i.length/2);
-    sideB = i.slice(i.length/2, i.length);
-    // console.log(sideA);
-    // console.log(sideB);
+    for (let x = 0; x < 3; x++) {     // splits array into groups of 3.
+        bag3 = bag2;
+        bag2 = bag1;
+        bag1 = theArray[counter];
+        counter += 1;
+    }
 
-    //compare.
-    for(var l of sideA) {
-        match = sideB.match(l);
-        
-        if (match != null) { // jumps out when answer is found.
-            break;
+    //compare. If this doesn't crash my computer idk what will lolol.         🚨🚨🚨  <<<<<<<<<< Lentil 🚨🚨🚨
+    for(var a of bag1) {
+        for(var b of bag2) {
+            if (a === b){
+                for (var c of bag3) {
+                    if (a === c) {
+                        match = a;  
+                    }
+                }
+            }
         }
     }
 
-//Assign each letter a number value and add up. (make a array with all the values - A = 27, B = 28 - and then call the key value pair?)
+
+//Assign each letter a number value and add up.
     total += alphabet[match[0]];
     console.log(total);
 }
@@ -107,3 +117,14 @@ for(var i of theArray) {
 
 
 });
+
+
+
+// var sideA = "";
+// var sideB = "";
+
+//Split each string in array in half using .length then compare both sides for the matching char.
+    // sideA = i.slice(0, i.length/2);
+    // sideB = i.slice(i.length/2, i.length);
+    // console.log(sideA);
+    // console.log(sideB);
